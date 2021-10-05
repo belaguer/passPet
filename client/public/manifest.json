@@ -1,10 +1,12 @@
 {
   "name": "Passpet",
-  "description": "Next generation passport for your pet."
+  "short_name":	"Passpet",
+  "start_url":	".",
+  "description": "Next generation passport for your pet.",
   "theme_color": "#00a672",
   "skylink": "vABI07paZM8da87sBcva8qLvhJihfRjqUS8lwBlZv7IwLA",
   "icons": [{
-    "src": "logo.png",
+    "src": "./logo.png",
     "sizes": "48x48",
     "type": "image/png"
   }]
