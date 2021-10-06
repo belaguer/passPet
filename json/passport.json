@@ -1,0 +1,34 @@
+{
+    "Passport Number" : "",
+    "Details of ownership": [
+        {"Name": ""},
+        {"Surname": ""},
+        {"Address": ""},
+        {"Post-code": ""},
+        {"City": ""},
+        {"Country": ""},
+        {"Telephone Number": ""}
+    ],
+    "Description of animal" : [
+        {"Name": ""},
+        {"Species":""},
+        {"Breed":""},
+        {"Sex":""},
+        {"Date of Birth":""},
+        {"Colour":""},
+        {"Features":""}
+    ],
+    "Marking of animal" : [
+        {"Transponder Code" : ""},
+        {"Date of reading" : ""},
+        {"Location of transponder" : ""}
+    ],
+    "Vaccination Against Rabies" : [
+        {"Manufacturer" : ""},
+        {"Vaccine Name" : ""},
+        {"Batch Number": ""},
+        {"Vaccination Date": ""},
+        {"Vaccination Valid Start Date": ""},
+        {"Vaccination Valid Until": ""}
+    ]
+}
