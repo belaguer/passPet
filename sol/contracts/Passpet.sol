@@ -11,17 +11,17 @@ contract PassPet is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    constructor() public ERC721("PassPet", "Pet") {}
+    constructor() public ERC721("PassPet", "PET") {}
 
-    function mintNFT(address recipient, string memory tokenURI)
+    function mintPET(address petOwner, string memory metadataURI)
         public onlyOwner
         returns (uint256)
     {
         _tokenIds.increment();
 
         uint256 newItemId = _tokenIds.current();
-        _mint(recipient, newItemId);
-        _setTokenURI(newItemId, tokenURI);
+        _safeMint(petOwner, newItemId);
+        _setTokenURI(newItemId, metadataURI);
 
         return newItemId;
     }
