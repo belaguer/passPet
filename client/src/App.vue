@@ -1,4 +1,25 @@
 <script setup>
+import { ethers } from 'ethers'
+import { contractAddress, contractAbi } from './modules/config'
+
+const init = () => {
+  if(!window.ethereum) {
+    console.log('Metamask is required')
+    return null
+  }
+
+  const provider = new ethers.providers.Web3Provider(window.ethereum)
+  const signer = provider.getSigner()
+
+  return { provider, signer }
+}
+
+const { provider, signer } = init()
+
+console.log(provider, signer)
+
+// https://docs.ethers.io/v5/getting-started/#getting-started--contracts
+// const passpetContract = new ethers.Contract(contractAddress, contractAbi, provider)
 
 </script>
 
