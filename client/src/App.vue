@@ -14,9 +14,7 @@ const init = () => {
   return { provider, signer }
 }
 
-const { provider, signer } = init()
-
-console.log(provider, signer)
+init()
 
 // https://docs.ethers.io/v5/getting-started/#getting-started--contracts
 // const passpetContract = new ethers.Contract(contractAddress, contractAbi, provider)
