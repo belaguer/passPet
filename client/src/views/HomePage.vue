@@ -1,5 +1,8 @@
 <script setup>
   import HomeCard from '../components/HomeCard.vue'
+  import ownerImg from '../assets/owner.png'
+  import vetImg from '../assets/vet.png'
+  import verifierImg from '../assets/verifier.png'
 
   const scrollTo = (id) => {
     document.getElementById(id).scrollIntoView({
@@ -22,13 +25,13 @@
       </h3>
     </section>
     <section class="gap-20 grid md:grid-cols-3 md:grid-rows-1 sm:grid-rows-3">
-      <HomeCard title="Pet Owner" asset="owner.png" dots @click="scrollTo('owner-onboard')" />
-      <HomeCard title="Veterinary" asset="vet.png" dots @click="scrollTo('vet-onboard')" />
-      <HomeCard title="Verifier" asset="verifier.png" @click="scrollTo('verifier-onboard')" />
+      <HomeCard title="Pet Owner" :asset="ownerImg" dots @click="scrollTo('owner-onboard')" />
+      <HomeCard title="Veterinary" :asset="vetImg" dots @click="scrollTo('vet-onboard')" />
+      <HomeCard title="Verifier" :asset="verifierImg" @click="scrollTo('verifier-onboard')" />
     </section>
     <section class="gap-20 grid grid-rows-3 my-14">
       <div id="owner-onboard">
-        <img class="onboard-icon" src="owner.png">
+        <img class="onboard-icon" :src="ownerImg">
         <h4 class="text-2xl font-semibold uppercase text-green-500 my-3">For pet owner</h4>
         <h6 class="text-6xl font-extrabold mb-3">Be able to own your pet data</h6>
         <p class="text-2xl">
@@ -36,7 +39,7 @@
         </p>
       </div>
       <div id="vet-onboard">
-        <img class="onboard-icon" src="vet.png">
+        <img class="onboard-icon" :src="vetImg">
         <h4 class="text-2xl font-semibold uppercase text-green-500 my-3">For veterinary</h4>
         <h6 class="text-6xl font-extrabold mb-3">Sign pet passport with NFT</h6>
         <p class="text-2xl">
@@ -44,7 +47,7 @@
         </p>
       </div>
       <div id="verifier-onboard">
-        <img class="onboard-icon" src="verifier.png">
+        <img class="onboard-icon" :src="verifierImg">
         <h4 class="text-2xl font-semibold uppercase text-green-500 my-3">For verifier</h4>
         <h6 class="text-6xl font-extrabold mb-3">Verify with the blockchain</h6>
         <p class="text-2xl">
