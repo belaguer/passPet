@@ -34,7 +34,7 @@ contract PassPet is ERC721URIStorage, Ownable {
     mapping(address => vetSignature ) public vetMap;
 
     function setSignature(address _vetAddress, uint _vetSignature) {
-        vetMap[msg.sender] = vetSignature (_vetAddress, _vetSignature);
+        vetMap[_vetAddress] = vetSignature (_vetAddress, _vetSignature);
     }
 
     function getVet() public view returns (uint256) {
