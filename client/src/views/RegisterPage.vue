@@ -1,6 +1,7 @@
 <script setup>
   import { ref, nextTick } from 'vue'
   import { encryptData, storeData, mintNFT } from '../modules/services.js'
+  import { addPet} from '../modules/store.js'
   import QrcodeVue from 'qrcode.vue'
 
   const defaultForm = {
@@ -39,8 +40,10 @@
     // mint the NFT
     const nftAddress = await mintNFT('pub_key', 'signature', dataURI)
 
+    console.log(form.value.pet.name)
+    const id = addPet(form.value.pet.name)
 
-    qr.value = window.location.origin + '/#/check/' + nftAddress
+    qr.value = window.location.origin + '/#/check/' + id
     await nextTick()
     document.getElementById('qr-code').scrollIntoView({
       behavior: "smooth"
@@ -62,7 +65,7 @@
             <input :disabled="qr" class="border py-2 px-3 text-grey-800" name="owner-name" v-model="form.owner.name">
           </div>
           <div class="flex flex-col mb-4">
-            <label class="mb-2 font-bold text-lg text-gray-900" for="owner-address">Address</label>
+            <label class="mb-2 font-bold text-lg text-gray-900" for="owner-address">Wallet address</label>
             <input :disabled="qr" class="border py-2 px-3 text-grey-800" name="owner-address">
           </div>
           <div class="flex flex-col mb-4">
@@ -76,7 +79,7 @@
         <form>
           <div class="flex flex-col mb-4">
             <label class="mb-2 font-bold text-lg text-gray-900" for="owner-name">Name</label>
-            <input :disabled="qr" class="border py-2 px-3 text-grey-800" name="owner-name">
+            <input :disabled="qr" class="border py-2 px-3 text-grey-800" name="owner-name"  v-model="form.pet.name">
           </div>
           <div class="flex flex-col mb-4">
             <label class="mb-2 font-bold text-lg text-gray-900" for="owner-address">Species</label>

@@ -4,10 +4,17 @@
   import vetImg from '../assets/vet.png'
   import verifierImg from '../assets/verifier.png'
 
+  import { useRouter } from 'vue-router'
+
+  const router = useRouter()
   const scrollTo = (id) => {
     document.getElementById(id).scrollIntoView({
       behavior: "smooth"
     })
+  }
+
+  const pushTo = (path) => {
+    router.push(path)
   }
 </script>
 
@@ -25,7 +32,7 @@
       </h3>
     </section>
     <section class="gap-20 grid md:grid-cols-3 md:grid-rows-1 sm:grid-rows-3">
-      <HomeCard title="Pet Owner" :asset="ownerImg" dots @click="scrollTo('owner-onboard')" />
+      <HomeCard title="Pet Owner" :asset="ownerImg" dots @click="pushTo('/dashboard')" />
       <HomeCard title="Veterinary" :asset="vetImg" dots @click="scrollTo('vet-onboard')" />
       <HomeCard title="Verifier" :asset="verifierImg" @click="scrollTo('verifier-onboard')" />
     </section>
