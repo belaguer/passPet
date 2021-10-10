@@ -1,5 +1,6 @@
 <script setup>
-  import { ref } from 'vue'
+  import { ref, nextTick } from 'vue'
+  import QrcodeVue from 'qrcode.vue'
 
   const defaultForm = {
     owner: {
@@ -24,10 +25,15 @@
     }
   }
 
+  let qr = ref(null)
   const form = ref(defaultForm)
 
-  const confirm = () => {
-    console.log(form)
+  const confirm = async () => {
+    qr.value = window.location.origin + '/#/check/fg00r68o73f08cjp6av7124'
+    await nextTick()
+    document.getElementById('qr-code').scrollIntoView({
+      behavior: "smooth"
+    })
   }
 </script>
 
@@ -42,15 +48,15 @@
         <form>
           <div class="flex flex-col mb-4">
             <label class="mb-2 font-bold text-lg text-gray-900" for="owner-name">Fullname</label>
-            <input class="border py-2 px-3 text-grey-800" name="owner-name" v-model="form.owner.name">
+            <input :disabled="qr" class="border py-2 px-3 text-grey-800" name="owner-name" v-model="form.owner.name">
           </div>
           <div class="flex flex-col mb-4">
             <label class="mb-2 font-bold text-lg text-gray-900" for="owner-address">Address</label>
-            <input class="border py-2 px-3 text-grey-800" name="owner-address">
+            <input :disabled="qr" class="border py-2 px-3 text-grey-800" name="owner-address">
           </div>
           <div class="flex flex-col mb-4">
             <label class="mb-2 font-bold text-lg text-gray-900" for="owner-phone">Phone Number</label>
-            <input class="border py-2 px-3 text-grey-800" name="owner-phone">
+            <input :disabled="qr" class="border py-2 px-3 text-grey-800" name="owner-phone">
           </div>
         </form>
       </section>
@@ -59,15 +65,15 @@
         <form>
           <div class="flex flex-col mb-4">
             <label class="mb-2 font-bold text-lg text-gray-900" for="owner-name">Name</label>
-            <input class="border py-2 px-3 text-grey-800" name="owner-name">
+            <input :disabled="qr" class="border py-2 px-3 text-grey-800" name="owner-name">
           </div>
           <div class="flex flex-col mb-4">
             <label class="mb-2 font-bold text-lg text-gray-900" for="owner-address">Species</label>
-            <input class="border py-2 px-3 text-grey-800" name="owner-address">
+            <input :disabled="qr" class="border py-2 px-3 text-grey-800" name="owner-address">
           </div>
           <div class="flex flex-col mb-4">
             <label class="mb-2 font-bold text-lg text-gray-900" for="owner-phone">Breed</label>
-            <input class="border py-2 px-3 text-grey-800" name="owner-phone">
+            <input :disabled="qr" class="border py-2 px-3 text-grey-800" name="owner-phone">
           </div>
         </form>
       </section>
@@ -76,15 +82,15 @@
         <form>
           <div class="flex flex-col mb-4">
             <label class="mb-2 font-bold text-lg text-gray-900" for="owner-name">Transponder Code</label>
-            <input class="border py-2 px-3 text-grey-800" name="owner-name">
+            <input :disabled="qr" class="border py-2 px-3 text-grey-800" name="owner-name">
           </div>
           <div class="flex flex-col mb-4">
             <label class="mb-2 font-bold text-lg text-gray-900" for="owner-address">Date of reading</label>
-            <input class="border py-2 px-3 text-grey-800" name="owner-address">
+            <input :disabled="qr" class="border py-2 px-3 text-grey-800" name="owner-address">
           </div>
           <div class="flex flex-col mb-4">
             <label class="mb-2 font-bold text-lg text-gray-900" for="owner-phone">Location of transponder</label>
-            <input class="border py-2 px-3 text-grey-800" name="owner-phone">
+            <input :disabled="qr" class="border py-2 px-3 text-grey-800" name="owner-phone">
           </div>
         </form>
       </section>
@@ -93,22 +99,34 @@
         <form>
           <div class="flex flex-col mb-4">
             <label class="mb-2 font-bold text-lg text-gray-900" for="owner-name">Vaccine Name</label>
-            <input class="border py-2 px-3 text-grey-800" name="owner-name">
+            <input :disabled="qr" class="border py-2 px-3 text-grey-800" name="owner-name">
           </div>
           <div class="flex flex-col mb-4">
             <label class="mb-2 font-bold text-lg text-gray-900" for="owner-address">Batch Number</label>
-            <input class="border py-2 px-3 text-grey-800" name="owner-address">
+            <input :disabled="qr" class="border py-2 px-3 text-grey-800" name="owner-address">
           </div>
           <div class="flex flex-col mb-4">
             <label class="mb-2 font-bold text-lg text-gray-900" for="owner-phone">Vaccination Date</label>
-            <input class="border py-2 px-3 text-grey-800" name="owner-phone">
+            <input :disabled="qr" class="border py-2 px-3 text-grey-800" name="owner-phone">
           </div>
         </form>
       </section>
-      <section>
+      <section v-if="!qr">
         <button class="block bg-green-500 hover:bg-green-600 text-white uppercase text-lg mx-auto px-10 py-4 rounded" @click="confirm">
           Confirm
         </button>
+      </section>
+      <section v-if="qr">
+        <qrcode-vue 
+          id="qr-code"
+          class="mx-auto my-10"
+          :value="qr"
+          size="250"
+          level="H"
+          foreground="#78350F"
+          background="#EAE0C9"
+        />
+        <h2 class="text-center text-green-500 my-4">QR code to present to the verifier</h2>
       </section>
     </main>
   </div>

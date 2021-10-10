@@ -11,7 +11,7 @@ const router = createRouter({
   routes: [
     { path: '/', component: HomePage },
     { path: '/registration', component: RegisterPage },
-    { path: '/check', component: CheckPage }
+    { path: '/check/:id', component: CheckPage }
   ]
 })
 
