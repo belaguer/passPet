@@ -1,15 +1,16 @@
 <script setup>
   import { ref, nextTick } from 'vue'
+  import { encryptData, storeData, mintNFT } from '../modules/services.js'
   import QrcodeVue from 'qrcode.vue'
 
   const defaultForm = {
     owner: {
-      name: 'James',
-      address: 'Paris',
-      phone: '06'
+      name: '',
+      address: '',
+      phone: ''
     },
     pet: {
-      name: 'Satoshi',
+      name: '',
       species: '',
       breed: ''
     },
@@ -29,7 +30,17 @@
   const form = ref(defaultForm)
 
   const confirm = async () => {
-    qr.value = window.location.origin + '/#/check/fg00r68o73f08cjp6av7124'
+    // encrypt data
+    const encryptedData = await encryptData(form)
+
+    // upload encrypted data on ipfs
+    const dataURI = await storeData(encryptData)
+
+    // mint the NFT
+    const nftAddress = await mintNFT('pub_key', 'signature', dataURI)
+
+
+    qr.value = window.location.origin + '/#/check/' + nftAddress
     await nextTick()
     document.getElementById('qr-code').scrollIntoView({
       behavior: "smooth"
