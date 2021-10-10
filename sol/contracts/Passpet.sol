@@ -11,6 +11,9 @@ contract PassPet is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
+    uint vetAddress;
+    uint vetSig;
+
     constructor() public ERC721("PassPet", "PET") {}
 
     function mintPET(address petOwner, string memory metadataURI)
@@ -25,4 +28,19 @@ contract PassPet is ERC721URIStorage, Ownable {
 
         return newItemId;
     }
-}
+
+    function setVet(uint x) public {
+        vetAddress = x;
+    }
+
+    function setSig(uint y) public {
+        vetSig = y; 
+    }
+
+    function getVet() public view returns (uint256) {
+        return _vetAddress;
+    }
+
+    function getSig() public view returns (uint256) {
+        return _vetSig;
+    }
