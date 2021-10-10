@@ -11,8 +11,10 @@ contract PassPet is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    uint vetAddress;
-    uint vetSig;
+    struct vetSignature {
+    address vetAddress;
+    uint vetSignature;
+  }
 
     constructor() public ERC721("PassPet", "PET") {}
 
@@ -29,12 +31,10 @@ contract PassPet is ERC721URIStorage, Ownable {
         return newItemId;
     }
 
-    function setVet(uint x) public {
-        vetAddress = x;
-    }
+    mapping(address => vetSignature ) public vetMap;
 
-    function setSig(uint y) public {
-        vetSig = y; 
+    function setSignature(address _vetAddress, uint _vetSignature) {
+        vetMap[msg.sender] = vetSignature (_vetAddress, _vetSignature);
     }
 
     function getVet() public view returns (uint256) {
