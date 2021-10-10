@@ -16,9 +16,31 @@ export const storeData = (encryptedData) => {
 export const mintNFT = (pubKey, signature, dataURI) => {
   // mint NFT and return an ID/address
   // const { contract } = initContract()
-  
+
   const nft = 'NFT_Address'
   return Promise.resolve(nft)
+}
+
+export const getNFT = (identifier) => {
+  return Promise.resolve({
+    pubKey: '',
+    signature: '',
+    dataURI: ''
+  })
+}
+
+export const downloadData = (uri) => {
+  const data = uri
+  return data
+}
+
+export const hashData = (data) => {
+  const hash = data
+  return hash
+}
+
+export const verifyHash = (hash) => {
+  return true
 }
 
 export const initContract = () => {
