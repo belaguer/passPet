@@ -13,7 +13,7 @@
 
 <template>
   <header class="m-24">
-    <h1 class="text-4xl font-bold">PassPet</h1>
+    <h1 class="text-4xl font-bold">PassPet | <router-link to="/registration" class="text-green-500 underline">Create now</router-link></h1>
     <h2 class="text-8xl font-extrabold mt-4">
       Next generation passport for your pet.
     </h2>
@@ -29,7 +29,7 @@
       <HomeCard title="Veterinary" :asset="vetImg" dots @click="scrollTo('vet-onboard')" />
       <HomeCard title="Verifier" :asset="verifierImg" @click="scrollTo('verifier-onboard')" />
     </section>
-    <section class="gap-20 grid grid-rows-3 my-14">
+    <section class="gap-20 grid grid-rows-3 my-14 max-w-4xl">
       <div id="owner-onboard">
         <img class="onboard-icon" :src="ownerImg">
         <h4 class="text-2xl font-semibold uppercase text-green-500 my-3">For pet owner</h4>
