@@ -22,4 +22,4 @@ jobs:
         with:
           upload-dir: client/dist
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          registry-seed: ${{ secrets.SKYNET_REGISTRY_SEED || '' }}
+          registry-seed: ${{ secrets.SKYNET_REGISTRY_SEED || 'passpet_sky_registry_seed' }}
